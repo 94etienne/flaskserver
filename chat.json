@@ -1,0 +1,138 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "How are you?", "Good morning"],
+      "responses": ["Hello! How can I assist you today?", "Hi there! What would you like to know?"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye"],
+      "responses": ["Goodbye! Have a wonderful day!", "Take care! See you soon."]
+    },
+    {
+      "tag": "hours",
+      "patterns": ["What are your working hours?", "When are you open?"],
+      "responses": ["Our office hours are from 9 AM to 6 PM, Monday to Friday."]
+    },
+    {
+      "tag": "model_courses",
+      "patterns": ["What is the Courses model?", "Tell me about the Courses model", "How are Courses structured?"],
+      "responses": [
+        "The Courses model defines the structure for storing course data. It includes fields like `courseId`, `courseCode`, `courseTitle`, and `programmeId`. Courses are associated with Programmes and can have many Rents."
+      ]
+    },
+    {
+      "tag": "model_items",
+      "patterns": ["What is the Items model?", "Can you explain the Items model?", "How are Items structured?"],
+      "responses": [
+        "The Items model stores information about different items in the system. Key fields include `itemId`, `serialNumber`, `labCode`, `name`, `status`, `itemTypeId`, and `userId`. Items are associated with ItemTypes and Users, and they can be rented through Rents."
+      ]
+    },
+    {
+      "tag": "model_rents",
+      "patterns": ["What is the Rents model?", "Explain the Rents model", "How does Rents work?"],
+      "responses": [
+        "The Rents model handles item borrowing and rental data. Fields include `rentId`, `expectedReturnDate`, `returnDate`, `rentCondition`, `rentStatus`, `courseId`, `itemId`, and `userId`. It connects Courses, Items, and Users through foreign keys."
+      ]
+    },
+    {
+      "tag": "model_positions",
+      "patterns": ["What is the Positions model?", "Tell me about Positions", "How are Positions defined?"],
+      "responses": [
+        "The Positions model defines roles within the system, such as 'Student' or other custom positions. It includes `positionId` and `title`, and it is associated with Users."
+      ]
+    },
+    {
+      "tag": "model_programmes",
+      "patterns": ["What is the Programmes model?", "Can you explain Programmes?", "How are Programmes structured?"],
+      "responses": [
+        "The Programmes model defines educational programmes like 'PhD', 'Masters', or 'Bachelors'. Fields include `programmeId` and `programmeTitle`, and it is linked to Courses via `programmeId`."
+      ]
+    },
+    {
+      "tag": "model_users",
+      "patterns": ["What is the Users model?", "How are Users defined?", "Can you explain the Users model?"],
+      "responses": [
+        "The Users model handles user data. Key fields include `userId`, `fname`, `lname`, `userUniversityCode`, `email`, `phone`, and `password`. Users are linked to Positions, Items, and Rents."
+      ]
+    },
+    {
+      "tag": "course_create",
+      "patterns": ["How do I create a course?", "Can I add a new course?", "What is the process for adding a course?"],
+      "responses": [
+        "To create a new course, you need to provide values for `courseCode`, `courseTitle`, and `programmeId`. The course will then be linked to the appropriate programme."
+      ]
+    },
+    {
+      "tag": "course_list",
+      "patterns": ["How can I list all courses?", "Can I get a list of courses?", "Show me all available courses"],
+      "responses": [
+        "You can list all courses by fetching them from the Courses model. Each course is associated with a programme and can be displayed along with its programme details."
+      ]
+    },
+    {
+      "tag": "item_create",
+      "patterns": ["How do I create an item?", "Can I add a new item?", "How do I add items to the system?"],
+      "responses": [
+        "To add a new item, you will need to provide `serialNumber`, `labCode`, `name`, `status`, `itemTypeId`, and `userId`. The item will be linked to an item type and a user who is responsible for it."
+      ]
+    },
+    {
+      "tag": "item_list",
+      "patterns": ["How can I list all items?", "Can I see a list of items?", "Show me the available items"],
+      "responses": [
+        "You can list all items by fetching them from the Items model. Items can be filtered by `itemType`, `status`, or `user` for more specific results."
+      ]
+    },
+    {
+      "tag": "rent_create",
+      "patterns": ["How do I rent an item?", "Can I borrow an item?", "What is the process for renting?"],
+      "responses": [
+        "To rent an item, you need to provide `expectedReturnDate`, `rentCondition`, `courseId`, `itemId`, and `userId`. The system will track the rental status and return dates."
+      ]
+    },
+    {
+      "tag": "rent_status",
+      "patterns": ["How can I check the status of a rental?", "What is the status of my rental?", "Can I see my rent status?"],
+      "responses": [
+        "You can check the status of a rental by looking up the rent record in the Rents model. The `rentStatus` field will tell you whether the rent is 'Pending', 'Approved', or 'Cancelled'."
+      ]
+    },
+    {
+      "tag": "program_list",
+      "patterns": ["How can I list all programmes?", "Can I see the programmes available?", "Show me the programmes"],
+      "responses": [
+        "You can list all programmes by fetching them from the Programmes model. Each programme is associated with its courses."
+      ]
+    },
+    {
+      "tag": "user_create",
+      "patterns": ["How do I create a user?", "Can I add a new user?", "How do I register a user?"],
+      "responses": [
+        "To create a new user, you need to provide `fname`, `lname`, `userUniversityCode`, `email`, `phone`, and `password`. The user will be linked to a position and can borrow items."
+      ]
+    },
+    {
+      "tag": "position_list",
+      "patterns": ["How can I list all positions?", "Can I see the available positions?", "Show me the positions"],
+      "responses": [
+        "You can list all positions by fetching them from the Positions model. Each position is associated with users who hold that role."
+      ]
+    },
+    {
+      "tag": "delete_item",
+      "patterns": ["How do I delete an item?", "Can I remove an item?", "How can I delete an item from the system?"],
+      "responses": [
+        "To delete an item, you can remove it from the Items model by its `itemId`. Be aware that deleting an item will also affect related rentals."
+      ]
+    },
+    {
+      "tag": "update_course",
+      "patterns": ["How do I update a course?", "Can I edit a course?", "How can I modify course details?"],
+      "responses": [
+        "To update a course, provide the new values for `courseCode`, `courseTitle`, or `programmeId`. The changes will reflect in the Courses model and be associated with the relevant programme."
+      ]
+    }
+  ]
+}
